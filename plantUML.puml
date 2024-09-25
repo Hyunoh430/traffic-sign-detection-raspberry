@@ -1,0 +1,41 @@
+@startuml
+skinparam backgroundColor transparent
+skinparam ActivityBackgroundColor #eaebff
+skinparam ActivityBorderColor #7497a6
+skinparam ActivityFontColor black
+
+|이미지 처리|
+start
+:고해상도 이미지 입력;
+:128x128 저해상도 변환 및 정규화;
+
+|객체 인식 및 분류|
+:YOLOv5로 표지판 검출;
+if (표지판 검출?) then (yes)
+  :Bounding Box 추출 및 크롭;
+  :Custom CNN으로 표지판 분류;
+  if (속도 제한 표지판?) then (yes)
+    :속도 제한 값 추출;
+  else (no)
+    :일반 표지판으로 처리;
+  endif
+else (no)
+  :다음 프레임으로;
+endif
+
+|속도 제어|
+if (속도 제한 표지판 검출?) then (yes)
+  :현재 속도 확인;
+  if (속도 초과?) then (yes)
+    :모터 속도 제한;
+  else (no)
+    :현재 속도 유지;
+  endif
+else (no)
+  :현재 속도 유지;
+endif
+
+:다음 프레임 처리;
+stop
+
+@enduml
