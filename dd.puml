@@ -1,0 +1,20 @@
+@startuml
+skinparam backgroundColor white
+skinparam defaultFontName Arial
+skinparam defaultFontColor black
+skinparam ArrowColor black
+skinparam ActivityBorderColor black
+skinparam ActivityBackgroundColor white
+skinparam ActivityFontSize 14
+
+title 영상 기반 위치추정 알고리즘
+
+start
+:디지털 트윈 구현;
+:출발 각도 (Angle of Departure) 추정;
+:송신기와 사용자 장비 방향 직선 거리 추정;
+:송신기와 사용자 장비 사이 거리 추정;
+:사용자 장비 위치 추정;
+stop
+
+@enduml
