@@ -1,37 +1,44 @@
 @startuml
-skinparam backgroundColor transparent
-skinparam ActivityBackgroundColor #eaebff
-skinparam ActivityBorderColor #7497a6
+skinparam backgroundColor white
+skinparam ActivityBackgroundColor #F0F8FF
+skinparam ActivityBorderColor #4682B4
 skinparam ActivityFontColor black
+skinparam ArrowColor #4682B4
+skinparam DefaultFontSize 20
+skinparam ActivityFontSize 20
+skinparam ArrowFontSize 18
+skinparam ActivityDiamondFontSize 18
+skinparam Padding 10
+skinparam Margin 14
+
+title 이미지 처리 및 속도 제어 프로세스
 
 |이미지 처리|
 start
 :고해상도 이미지 입력;
-:128x128 저해상도 변환 및 정규화;
+:저해상도 변환 및 정규화;
 |객체 인식 및 분류|
 :YOLOv5로 표지판 검출;
 if (표지판 검출?) then (yes)
-  :Bounding Box 좌표 추출;
-  :Bounding Box 좌표를 고해상도 원본 이미지에 매핑;
-  :고해상도 이미지에서 표지판 영역 크롭;
-  :크롭된 영역을 128x128 저해상도로 변환;
-  :Custom CNN으로 표지판 분류;
-  :속도 제한 값 추출;
-
+ :좌표 추출 및 매핑;
+ :표지판 영역 크롭;
+ :저해상도 변환;
+ :CNN으로 표지판 분류;
+ :속도 제한 값 추출;
 else (no)
-  :다음 프레임으로;
+ :다음 프레임으로;
 endif
 |속도 제어|
-if (속도 제한 표지판 검출?) then (yes)
-  :최대 속도 갱신;
+if (속도 제한 표지판?) then (yes)
+ :최대 속도 갱신;
 else (no)
-  :최대 속도 유지;
+ :최대 속도 유지;
 endif
 :현재 속도 확인;
 if (속도 초과) then (yes)
-  :현재 속도 제한;
+ :속도 제한;
 else (no)
-  :현재 속도 유지;
+ :속도 유지;
 endif
 :다음 프레임 처리;
 stop
