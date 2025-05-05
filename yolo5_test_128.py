@@ -73,7 +73,7 @@ def detect_image(weights, img_path, device='cpu', imgsz=(128, 128), conf_thres=0
     return img0
 
 # Example usage
-result_img = detect_image(weights='128_128.pt', img_path='image1.jpg', imgsz=(128, 128), save_path='result_image.jpg', crop_save_path='cropped_result.jpg')
+result_img = detect_image(weights='128_128.pt', img_path='image1.png', imgsz=(128, 128), save_path='result_image.jpg', crop_save_path='cropped_result.jpg')
 cv2.imshow('Detection', result_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()

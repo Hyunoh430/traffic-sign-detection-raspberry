@@ -115,5 +115,5 @@ def detect_and_predict_tflite(weights, img_path, device='cpu', imgsz=(128, 128),
         print("No valid bounding box found.")
 
 # Example usage
-detect_and_predict_tflite(weights='128_128.pt', img_path='image1.jpg', imgsz=(128, 128), crop_save_path='cropped_result.jpg')
+detect_and_predict_tflite(weights='128_128.pt', img_path='image1.png', imgsz=(128, 128), crop_save_path='cropped_result.jpg')
 
